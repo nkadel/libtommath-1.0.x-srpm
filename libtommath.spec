@@ -1,6 +1,7 @@
 Name:           libtommath
 Version:        1.0.1
-Release:        4%{?dist}
+#Release:        4%%{?dist}
+Release:        0%{?dist}
 Summary:        A portable number theoretic multiple-precision integer library
 License:        Public Domain
 URL:            http://www.libtom.net/
@@ -18,6 +19,8 @@ BuildRequires:  texlive-mfware-bin
 BuildRequires:  tex(cmr10.tfm)
 BuildRequires:  tex(fancyhdr.sty)
 BuildRequires:  tex(hyphen.tex)
+# Added for RHEL 8
+BuildRequires:  texlive-metafont
 
 %description
 A free open source portable number theoretic multiple-precision integer library
@@ -77,6 +80,10 @@ find %{buildroot} -name '*.a' -delete
 %doc doc/bn.pdf doc/poster.pdf doc/tommath.pdf
 
 %changelog
+- Mon May 13 2019 Nico Kadel-Garcia <nkadel@gmail.com> - 1.0.1-0
+- Port to RHEL 8
+- Add texlive-metafont dependency
+
 * Sun Feb 25 2018 Florian Weimer <fweimer@redhat.com> - 1.0.1-4
 - Add BuildRequires: ghostscript-tools-dvipdf
 
