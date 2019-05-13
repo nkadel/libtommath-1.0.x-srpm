@@ -80,7 +80,7 @@ find %{buildroot} -name '*.a' -delete
 %doc doc/bn.pdf doc/poster.pdf doc/tommath.pdf
 
 %changelog
-- Mon May 13 2019 Nico Kadel-Garcia <nkadel@gmail.com> - 1.0.1-0
+* Mon May 13 2019 Nico Kadel-Garcia <nkadel@gmail.com> - 1.0.1-0
 - Port to RHEL 8
 - Add texlive-metafont dependency
 
