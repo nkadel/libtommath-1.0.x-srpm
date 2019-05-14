@@ -16,11 +16,12 @@ BuildRequires:  ghostscript-tools-dvipdf
 BuildRequires:  texlive-latex-bin-bin
 BuildRequires:  texlive-makeindex-bin
 BuildRequires:  texlive-mfware-bin
+%if 0%{?rhel} == 8
+BuildRequires:	texlive-metafont
+%endif
 BuildRequires:  tex(cmr10.tfm)
 BuildRequires:  tex(fancyhdr.sty)
 BuildRequires:  tex(hyphen.tex)
-# Added for RHEL 8
-BuildRequires:  texlive-metafont
 
 %description
 A free open source portable number theoretic multiple-precision integer library
@@ -57,7 +58,11 @@ sed -i \
 
 %build
 %make_build V=1 CFLAGS="%{optflags} -I./" -f makefile.shared
-%make_build V=1 -f makefile poster manual docs
+%make_build V=1 -f makefile poster
+%if 0%{?rhel} != 8
+%make_build V=1 -f makefile manual
+%endif
+%make_build V=1 -f makefile docs
 
 %install
 %make_install V=1 CFLAGS="%{optflags} -I./" PREFIX=%{_prefix} LIBPATH=%{_libdir} -f makefile.shared
@@ -77,12 +82,16 @@ find %{buildroot} -name '*.a' -delete
 %{_libdir}/pkgconfig/*.pc
 
 %files doc
-%doc doc/bn.pdf doc/poster.pdf doc/tommath.pdf
+%if 0%{?rhel} != 8
+%doc doc/bn.pdf
+%endif
+%doc doc/poster.pdf
+%doc doc/tommath.pdf
 
 %changelog
-* Mon May 13 2019 Nico Kadel-Garcia <nkadel@gmail.com> - 1.0.1-0
-- Port to RHEL 8
-- Add texlive-metafont dependency
+* Tue May 14 2019 Nico Kadel-Garcia <nkadel@gmail.com> - 1.0.1-0
+- Disabling building bn.pdf on RHEL 8
+- Add BuildRequires for texlive-metafont to get /usr/bin/mf
 
 * Sun Feb 25 2018 Florian Weimer <fweimer@redhat.com> - 1.0.1-4
 - Add BuildRequires: ghostscript-tools-dvipdf
