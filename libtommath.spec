@@ -12,7 +12,7 @@ BuildRequires:  ghostscript
 BuildRequires:  libtiff-tools
 BuildRequires:  libtool
 BuildRequires:  texlive-dvips-bin
-BuildRequires:  ghostscript-tools-dvipdf
+#BuildRequires:  ghostscript-tools-dvipdf
 BuildRequires:  texlive-latex-bin-bin
 BuildRequires:  texlive-makeindex-bin
 BuildRequires:  texlive-mfware-bin
@@ -70,7 +70,9 @@ sed -i \
 find %{buildroot} -name '*.la' -delete
 find %{buildroot} -name '*.a' -delete
 
-%ldconfig_scriptlets
+#%%ldconfig_scriptlets
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %license LICENSE
