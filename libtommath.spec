@@ -8,6 +8,11 @@ URL:            http://www.libtom.net/
 
 Source0:        https://github.com/libtom/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
+%if (0%{?rhel} > 0 && 0%{?rhel} <= 7)
+# Addresses python36- versus python3- dependencies
+BuildRequires: epel-rpm-macros
+%endif
+
 BuildRequires:  ghostscript
 BuildRequires:  libtiff-tools
 BuildRequires:  libtool
