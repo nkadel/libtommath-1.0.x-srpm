@@ -6,7 +6,7 @@
 LANG=C
 
 #
-#MOCKS+=epel-8-x86_64
+MOCKS+=epel-8-x86_64
 
 #REPOBASEDIR=/var/www/linux/samba4repo
 REPOBASEDIR:=`/bin/pwd`/../samba4repo
