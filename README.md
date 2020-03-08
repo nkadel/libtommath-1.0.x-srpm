@@ -11,8 +11,6 @@ The "make" command will do these steps.
 	make build	# Build the package on the local OS
 	make all	# Use "mock" to build the packages with the local
 			# samba4repo configuration, which needs.
-	make install	# Actually install the RPM's in the designated
-			# location for samba4repo
-
+	make install	# Actually install the RPM's in the designated repo
 
 		Nico Kadel-Garcia <nkadel@gmail.com>
