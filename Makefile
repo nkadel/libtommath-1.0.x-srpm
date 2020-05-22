@@ -8,12 +8,12 @@ LANG=C
 # Only RHEL 8 lacks this module
 #MOCKS+=epel-7-x86_64
 MOCKS+=epel-8-x86_64
-#MOCKS+=fedora-31-x86_64
+#MOCKS+=fedora-32-x86_64
 
 # repos that reference deployed packages
 #MOCKCFGS+=samba4repo-7-x86_64
 MOCKCFGS+=samba4repo-8-x86_64
-#MOCKCFGS+=samba4repo-f31-x86_64
+#MOCKCFGS+=samba4repo-f32-x86_64
 
 #REPOBASEDIR=/var/www/linux/samba4repo
 REPOBASEDIR:=`/bin/pwd`/../samba4repo
@@ -45,7 +45,7 @@ build:: src.rpm
 
 .PHONY: $(MOCKS)
 $(MOCKS):: src.rpm
-	@if [ -e $@ -a -n "`find $@ -name \*.rpm`" ]; then \
+	@if [ -e $@ -a -n "`find $@ -name \*.rpm 2>/dev/null`" ]; then \
 		echo "	Skipping RPM populated $@"; \
 	else \
 		echo "Actally building $? in $@"; \
@@ -63,8 +63,8 @@ install:: $(MOCKS)
 	    case $$repo in \
 		*-7-x86_64) yumrelease=el/7; yumarch=x86_64; ;; \
 		*-8-x86_64) yumrelease=el/8; yumarch=x86_64; ;; \
-		*-31-x86_64) yumrelease=fedora/31; yumarch=x86_64; ;; \
-		*-f31-x86_64) yumrelease=fedora/31; yumarch=x86_64; ;; \
+		*-32-x86_64) yumrelease=fedora/32; yumarch=x86_64; ;; \
+		*-f32-x86_64) yumrelease=fedora/32; yumarch=x86_64; ;; \
 		*-rawhide-x86_64) yumrelease=fedora/rawhide; yumarch=x86_64; ;; \
 		*) echo "Unrecognized release for $$repo, exiting" >&2; exit 1; ;; \
 	    esac; \
