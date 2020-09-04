@@ -1,17 +1,12 @@
 Name:           libtommath
 Version:        1.0.1
 #Release:        4%%{?dist}
-Release:        0%{?dist}
+Release:        0.1%{?dist}
 Summary:        A portable number theoretic multiple-precision integer library
 License:        Public Domain
 URL:            http://www.libtom.net/
 
 Source0:        https://github.com/libtom/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
-
-%if 0%{?rhel}
-# Addresses python36- versus python3- dependencies
-BuildRequires: epel-rpm-macros
-%endif
 
 # Requies PowerTools on Centtos 8
 BuildRequires:  ghostscript
@@ -97,6 +92,9 @@ find %{buildroot} -name '*.a' -delete
 %doc doc/tommath.pdf
 
 %changelog
+* Sat Sep 5 2020 Nico Kadel-Garcia <nkadel@gmail.com> - 1.0.1-0.1
+- Discard BuildRequires for epel-rpm-macros
+
 * Tue May 14 2019 Nico Kadel-Garcia <nkadel@gmail.com> - 1.0.1-0
 - Disabling building bn.pdf on RHEL 8
 - Add BuildRequires for texlive-metafont to get /usr/bin/mf
