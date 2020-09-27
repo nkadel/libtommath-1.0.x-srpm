@@ -6,9 +6,7 @@
 LANG=C
 
 # Only RHEL 8 lacks this module
-#MOCKS+=epel-7-x86_64
 MOCKS+=epel-8-x86_64
-#MOCKS+=fedora-32-x86_64
 
 # repos that reference deployed packages
 #MOCKCFGS+=samba4repo-7-x86_64
@@ -61,6 +59,7 @@ install:: $(MOCKS)
 	@for repo in $(MOCKS); do \
 	    echo Installing $$repo; \
 	    case $$repo in \
+		amazonlinux-2-x86_64) yumrelease=amzn/2; yumarch=x86_64; ;; \
 		*-7-x86_64) yumrelease=el/7; yumarch=x86_64; ;; \
 		*-8-x86_64) yumrelease=el/8; yumarch=x86_64; ;; \
 		*-32-x86_64) yumrelease=fedora/32; yumarch=x86_64; ;; \
