@@ -11,7 +11,8 @@ MOCKS+=epel-8-x86_64
 # repos that reference deployed packages
 #MOCKCFGS+=samba4repo-7-x86_64
 MOCKCFGS+=samba4repo-8-x86_64
-#MOCKCFGS+=samba4repo-f32-x86_64
+#MOCKCFGS+=samba4repo-f33-x86_64
+#MOCKCFGA+=samba4rerepo-amz2-x86_64
 
 #REPOBASEDIR=/var/www/linux/samba4repo
 REPOBASEDIR:=`/bin/pwd`/../samba4repo
@@ -60,10 +61,11 @@ install:: $(MOCKS)
 	    echo Installing $$repo; \
 	    case $$repo in \
 		amazonlinux-2-x86_64) yumrelease=amzn/2; yumarch=x86_64; ;; \
+		*-amz2-x86_64) yumrelease=amazon/2; yumarch=x86_64; ;; \
 		*-7-x86_64) yumrelease=el/7; yumarch=x86_64; ;; \
 		*-8-x86_64) yumrelease=el/8; yumarch=x86_64; ;; \
-		*-32-x86_64) yumrelease=fedora/32; yumarch=x86_64; ;; \
-		*-f32-x86_64) yumrelease=fedora/32; yumarch=x86_64; ;; \
+		*-33-x86_64) yumrelease=fedora/33; yumarch=x86_64; ;; \
+		*-f33-x86_64) yumrelease=fedora/33; yumarch=x86_64; ;; \
 		*-rawhide-x86_64) yumrelease=fedora/rawhide; yumarch=x86_64; ;; \
 		*) echo "Unrecognized release for $$repo, exiting" >&2; exit 1; ;; \
 	    esac; \
